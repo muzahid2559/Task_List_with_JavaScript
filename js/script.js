@@ -14,6 +14,7 @@ let clearBtn = document.querySelector('#clear_task_btn');
 form.addEventListener('submit' , addTask);
 taskList.addEventListener('click' , removeTask);
 clearBtn.addEventListener('click' , clearTask);
+clearBtn.addEventListener('keyup' , filterTask);
 
 
 //Define functions
@@ -64,4 +65,18 @@ function clearTask(e){
             taskList.removeChild(taskList.firstChild);
         }  
     }
+}
+
+//Fillter Task
+function filterTask(e){
+    let text = e.target.value.toLowerCase();
+
+    document.querySelectorAll('li').forEach(task =>{
+        let item = task.firstChild.textContent;
+        if(item.toLowerCase().indexOf(text)!= -1) {
+            task.style.display = 'block';
+        } else{
+            task.style.display = 'none';
+        }
+    });
 }
